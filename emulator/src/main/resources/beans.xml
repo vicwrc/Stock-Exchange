@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="serverHandler" class="com.luxoft.stockexchange.emulator.handlers.SimpleMessageHandler">
+	</bean>
+	
+	<bean id="clientHandler" class="com.luxoft.stockexchange.emulator.handlers.SimpleMessageHandler">
+	</bean>
+	
+	<!-- TODO dirty trick remove circular reference -->
+	<bean id="fakeClient" class="com.luxoft.stockexchange.emulator.application.ClientApplication">
+		<constructor-arg ref="pathToInitiator" />
+	</bean>
+	
+	<bean id="clientStoreFatory" class="quickfix.FileStoreFactory">
+		<constructor-arg value="#{fakeClient.getSettings()}" />
+	</bean>
+	
+	<!-- TODO dirty trick remove circular reference -->
+	<bean id="fakeServer" class="com.luxoft.stockexchange.emulator.application.ServerApplication">
+		<constructor-arg ref="pathToAcceptor" />
+	</bean>
+	
+	<bean id="serverStoreFatory" class="quickfix.FileStoreFactory">
+		<constructor-arg value="#{fakeServer.getSettings()}"/>
+	</bean>
+	
+	<bean id="logFatory" class="quickfix.ScreenLogFactory">
+		<constructor-arg value="true" />
+		<constructor-arg value="true" />
+		<constructor-arg value="true" />
+	</bean>
+	
+	<bean id="messageFactory" class="quickfix.DefaultMessageFactory">
+	</bean>
+
+	<!-- TODO dirty trick get resources as String -->
+	<bean id="pathToAcceptor" class="java.lang.String">
+		<constructor-arg value="#{ser.getPath()}"/>
+	</bean>
+	
+	<bean id="pathToInitiator" class="java.lang.String">
+		<constructor-arg value="#{cli.getPath()}"/>
+	</bean>
+	
+	<bean id="cli" class="org.springframework.core.io.ClassPathResource">
+		<constructor-arg value="/initiator.txt"/>
+	</bean>
+	
+	<bean id="ser" class="org.springframework.core.io.ClassPathResource">
+		<constructor-arg value="/acceptor.txt"/>
+	</bean>
+	
+	<bean id="client" class="com.luxoft.stockexchange.emulator.application.ClientApplication">
+		<constructor-arg ref="pathToInitiator" />
+		<property name="handler" ref="clientHandler"/>
+		<property name="storeFactory" ref="clientStoreFatory"/>
+		<property name="logFactory" ref="logFatory"/>
+		<property name="messageFactory" ref="messageFactory"/>
+	</bean>
+
+	<bean id="server" class="com.luxoft.stockexchange.emulator.application.ServerApplication">
+		<constructor-arg ref="pathToAcceptor" />
+		<property name="handler" ref="clientHandler"/>
+		<property name="storeFactory" ref="serverStoreFatory"/>
+		<property name="logFactory" ref="logFatory"/>
+		<property name="messageFactory" ref="messageFactory"/>
+	</bean>
+</beans>
