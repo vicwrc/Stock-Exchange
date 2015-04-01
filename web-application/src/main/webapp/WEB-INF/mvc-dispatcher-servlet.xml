@@ -7,12 +7,12 @@
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<context:component-scan base-package="com.luxoft.okramarenko.stockexchange.simplemvc.controller" />
+	<context:component-scan base-package="com.luxoft.okramarenko.stockexchange.webapplication.controller" />
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
-			<value>/WEB-INF/pages/</value>
+			<value>/WEB-INF/views/</value>
 		</property>
 		<property name="suffix">
 			<value>.jsp</value>
