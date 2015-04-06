@@ -118,6 +118,7 @@ tbody:hover tr:hover td {
 </head>
 
 <body>
+
  <table>
   <thead>
     <tr>

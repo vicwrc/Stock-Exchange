@@ -178,10 +178,9 @@ h1 {
 
 <body>
 
-
 <div id="wrapper">
 		<h1>server session</h1>
-<table id="list">
+<table id="list" cellspacing="0" cellpadding="0">
 		<thead>
 			<tr>
 				<th><span>Name</span></th>
@@ -193,14 +192,13 @@ h1 {
 				<tr>
 					<td class="lalign">${item.key}</td>
 					<td>${item.value}</td>
-					<!-- td><input type="submit" name="${item.key}" value="${item.key}" /></td-->
-					<!--td><input type="submit" name="action" value="${item.key}" /></td-->
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
+					<!-- td><input type="submit" name="${item.key}" value="${item.key}" /></td-->
+					<!--td><input type="submit" name="action" value="${item.key}" /></td-->
 	</div>
-	
 	<!-- table id="list">
 	<head>
 		<caption>Client Sessions</caption>
