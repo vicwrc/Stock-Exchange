@@ -21,6 +21,6 @@ td {
 	padding: 20px 30px;
 }
 
- tr:hover {
+ tr:hover td {
           background-color: #ffff99;
 }
