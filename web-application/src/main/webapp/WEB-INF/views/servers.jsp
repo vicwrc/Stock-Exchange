@@ -8,6 +8,13 @@
 <head>
 <title>Stocks</title>
 <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
+	<script type="text/javascript">
+	function popit(url){
+	    newwindow = window.open(url, '', "status=yes, height=500; width=500; resizeable=no");
+	}
+
+    </script>
+
 </head>
 <body>
 
@@ -21,12 +28,10 @@
 		</thead>
 		<tbody>
 			<c:forEach var="item" items="${serverSessions}">
-				<tr>
+				<tr onclick=document.location.href='http://localhost/web-application/${item.key}'>
 					<td>${item.key}</td>
 					<td>${fn:length(item.value.seqIn)}</td>
 					<td>${fn:length(item.value.seqOut)}</td>
-					<!-- td><input type="submit" name="${item.key}" value="${item.key}" /></td-->
-					<td><input type="submit" name="action" value="${item.key}" /></td>
 				</tr>
 			</c:forEach>
 		</tbody>

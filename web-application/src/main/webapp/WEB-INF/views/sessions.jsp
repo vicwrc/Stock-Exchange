@@ -20,23 +20,19 @@
 		<tbody>
 			<!-- SeqIn -->
 			<c:forEach var="item" items="${session.seqIn}">
-				<tr>
+				<tr onclick=document.location.href='http://localhost/web-application/${name}/${item.id}'>
 					<td>${item.processedTime}</td>
 					<td>${item.message}</td>
 					<td>In</td>
-					<!-- <td><input type="submit" name="action" value="Info" /></td> -->
-					<td><input type="submit" name="action" value="${item.id}" /></td>
 				</tr>
 			</c:forEach>
 			
 			<!-- SeqOut -->
 			<c:forEach var="item" items="${session.seqOut}">
-				<tr>
+				<tr onclick=document.location.href='http://localhost/web-application/${name}/${item.id}'>
 					<td>${item.processedTime}</td>
 					<td>${item.message}</td>
 					<td>Out</td>
-					<td><input type="submit" name="action" value="${item.id}" /></td>
-					<!-- <td><input type="submit" name="action" value="Info" /></td> -->
 				</tr>
 			</c:forEach>
 		</tbody>

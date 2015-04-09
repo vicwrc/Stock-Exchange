@@ -46,7 +46,6 @@ public class BaseController {
 		return "sessions";
 	}
 	
-	
 	//TODO
 	@RequestMapping(value = "/{session}/{message}", method = RequestMethod.GET)
 	public String messages(@PathVariable String session, @PathVariable int message, ModelMap model) {
@@ -56,9 +55,9 @@ public class BaseController {
 		Map<Integer, String> map = new HashMap<>();
 		
 		try {
-			map.putAll(printFieldMap(mes.getHeader()));
-			map.putAll(printFieldMap(mes));
-			map.putAll(printFieldMap(mes.getTrailer()));
+			map.putAll(fieldMapToMap(mes.getHeader()));
+			map.putAll(fieldMapToMap(mes));
+			map.putAll(fieldMapToMap(mes.getTrailer()));
 		} catch (FieldNotFound e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -83,7 +82,7 @@ public class BaseController {
 		return null;
 	}
 	
-	private Map<Integer, String> printFieldMap(FieldMap fieldMap) throws FieldNotFound {
+	private Map<Integer, String> fieldMapToMap(FieldMap fieldMap) throws FieldNotFound {
 		Map<Integer, String> result = new HashMap<>();
 
 		Iterator<Field<?>> fieldIterator = fieldMap.iterator();
@@ -104,7 +103,7 @@ public class BaseController {
 			int i = 1;
 			while (fieldMap.hasGroup(i, groupCountTag)) {
 				fieldMap.getGroup(i, group);
-				printFieldMap(group);
+				fieldMapToMap(group);
 				i++;
 			}
 		}

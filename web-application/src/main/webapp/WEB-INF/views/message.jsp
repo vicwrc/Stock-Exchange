@@ -21,7 +21,6 @@
 				<tr>
 					<td>${item.key}</td>
 					<td>${item.value}</td>
-					<td><input type="submit" name="action" value="Info" /></td>
 				</tr>
 			</c:forEach>
 		</tbody>
