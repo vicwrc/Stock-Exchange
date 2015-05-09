@@ -70,6 +70,9 @@ public class FixActivityRow implements Serializable {
     }
 
     protected boolean formDataApplicable(FixMessage currentMessage, Map<Integer, Object> formData) {
+        if(null == formData) {
+            return false;
+        }
         Object dataToSet = formData.get(this.tag);
         if(null == dataToSet || ! isValidDataType(dataToSet)) {
             return false;

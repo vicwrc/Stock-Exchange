@@ -49,8 +49,10 @@ public class ActionTemplate {
     }
 
     protected Map<Integer, Object> adjustFormData(Map<Integer, Object> formData) {
-        formData.remove(Integer.valueOf(35));
-        formData.remove(Integer.valueOf(8));
+        if(null != formData) {
+            formData.remove(Integer.valueOf(35));
+            formData.remove(Integer.valueOf(8));
+        }
         return formData;
     }
 
