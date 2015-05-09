@@ -13,7 +13,7 @@ public class FixActivityGenerator {
 
 
     public FixMessage createMessage(String templateName, FixMessage parentMessage, Map<Integer, Object> overrideDetails) {
-        return null;
+        return templateRepository.getTemplate(templateName).create(parentMessage,overrideDetails);
     }
 
     public FixMessage createMessage(String templateName, Map<Integer, Object> overrideDetails) {

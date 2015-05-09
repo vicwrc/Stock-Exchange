@@ -1,11 +1,13 @@
 package com.luxoft.stockexchange.emulator.actions.template;
 
 import com.luxoft.stockexchange.emulator.entities.FixMessage;
+import com.luxoft.stockexchange.emulator.utils.CompiledMVEL;
 import quickfix.Field;
 import quickfix.FieldMap;
 import quickfix.Message;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.Map;
 
 /**
@@ -60,7 +62,11 @@ public class FixActivityRow implements Serializable {
     }
 
     protected void evaluateExpression(FixMessage currentMessage, FixMessage parentMessage) {
-
+        Object dataToSet = CompiledMVEL.executeExpression(expression, Collections.singletonMap("parent",null == parentMessage ? null :parentMessage.getMessage()));
+        if(null != dataToSet && ! isValidDataType(dataToSet)) {
+            throw new IllegalArgumentException("incorrect evaluation result of expression: ["+ expression+ "] within param : parent = "+ parentMessage.getMessage());
+        }
+        setTo(currentMessage,dataToSet);
     }
 
     protected boolean formDataApplicable(FixMessage currentMessage, Map<Integer, Object> formData) {
