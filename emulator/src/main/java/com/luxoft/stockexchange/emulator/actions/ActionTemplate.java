@@ -5,17 +5,28 @@ import com.luxoft.stockexchange.emulator.entities.FixMessage;
 import quickfix.Message;
 import quickfix.MessageFactory;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 /**
  * Created by victorvorontsov on 09.05.15.
  */
-public class ActionTemplate {
+@XmlAccessorType(XmlAccessType.FIELD)
+public class ActionTemplate implements Serializable {
 
+    @XmlAttribute
     private String fixVersion;
+    @XmlAttribute
     private String msgType;
-    private List<FixActivityRow> activityRowList;
+
+    @XmlElement(name="FixActivityRow")
+    private List<FixActivityRow> activityRowList = new LinkedList<>();
 
     public List<FixActivityRow> getActivityRowList() {
         return activityRowList;
@@ -64,5 +75,14 @@ public class ActionTemplate {
         for(FixActivityRow row : activityRowList) {
             row.visit(currentMessage,parentMessage,formData);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "ActionTemplate{" +
+                "fixVersion='" + fixVersion + '\'' +
+                ", msgType='" + msgType + '\'' +
+                ", activityRowList=" + activityRowList +
+                '}';
     }
 }

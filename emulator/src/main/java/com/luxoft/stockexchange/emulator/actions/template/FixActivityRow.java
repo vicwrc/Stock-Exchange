@@ -6,6 +6,9 @@ import quickfix.Field;
 import quickfix.FieldMap;
 import quickfix.Message;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Map;
@@ -13,12 +16,25 @@ import java.util.Map;
 /**
  * Created by victorvorontsov on 09.05.15.
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class FixActivityRow implements Serializable {
 
+    @XmlAttribute
     private FixDataLocation location;
+    @XmlAttribute
     private int tag;
-    private Class<?> dataType;
+    private Class dataType;
     private String expression;
+
+    public FixActivityRow() {
+    }
+
+    public FixActivityRow(FixDataLocation location, int tag, Class dataType, String expression) {
+        this.location = location;
+        this.tag = tag;
+        this.dataType = dataType;
+        this.expression = expression;
+    }
 
     public FixDataLocation getLocation() {
         return location;
@@ -102,5 +118,15 @@ public class FixActivityRow implements Serializable {
             return message;
         }
         throw new IllegalArgumentException("Can't find appropriate location");
+    }
+
+    @Override
+    public String toString() {
+        return "FixActivityRow{" +
+                "location=" + location +
+                ", tag=" + tag +
+                ", dataType=" + dataType +
+                ", expression='" + expression + '\'' +
+                '}';
     }
 }

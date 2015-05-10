@@ -42,8 +42,8 @@ public final class MessageFactory {
 	private static Message fix42Orders(String type) throws Exception {
 		Message message = null;
 		switch (type) {
-		case "NewOrderSingle" : message = newOrderSingle(); break;
-		default : throw new Exception("");
+		    case "NewOrderSingle" : message = newOrderSingle(); break;
+		    default : throw new Exception("");
 		}
 		
 		return message;
