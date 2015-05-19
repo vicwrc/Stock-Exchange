@@ -5,16 +5,7 @@ import com.luxoft.stockexchange.emulator.actions.template.FixDataLocation;
 import com.luxoft.stockexchange.emulator.utils.XMLConverter;
 import org.junit.Test;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-import java.io.File;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class ActionTemplateTest {
 
@@ -36,9 +27,9 @@ public class ActionTemplateTest {
 
     @Test
     public void testGenerateData() throws Exception {
-        XMLConverter.getInstance().convertFromObjectToXML(createConfigExample(), "template.xml");
+        //XMLConverter.getInstance().convertFromObjectToXML(createConfigExample(), "template.xml");
 
-        System.out.println(XMLConverter.getInstance().convertFromXMLToObject("template.xml",ActionTemplatesList.class));
+        System.out.println(XMLConverter.getInstance().convertFromXMLToObject("/Users/victorvorontsov/IdeaProjects/Stock-Exchange_fork/emulator/template.xml",ActionTemplatesList.class));
         System.out.println(createConfigExample());
     }
 }

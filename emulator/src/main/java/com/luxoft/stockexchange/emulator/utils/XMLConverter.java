@@ -1,10 +1,12 @@
 package com.luxoft.stockexchange.emulator.utils;
 
+import com.google.common.base.Charsets;
+import com.google.common.io.Files;
+import com.google.common.io.Resources;
 import com.luxoft.stockexchange.emulator.actions.ActionTemplatesList;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
+import java.net.URL;
 import javax.xml.bind.*;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
@@ -40,17 +42,25 @@ public class XMLConverter {
     }
 
     public Object convertFromXMLToObject(String xmlfile, Class clazz) throws IOException, JAXBException {
-
-        FileInputStream is = null;
+        InputStream is = null;
         try {
             JAXBContext jc = JAXBContext.newInstance(clazz);
             Unmarshaller unmarshaller = jc.createUnmarshaller();
-            is = new FileInputStream(xmlfile);
+             is = open(xmlfile);
             return unmarshaller.unmarshal(new StreamSource(is));
         } finally {
             if (is != null) {
                 is.close();
             }
+        }
+    }
+
+
+    private InputStream open(String path) {
+        try{
+            return new FileInputStream(path);
+        } catch (FileNotFoundException e) {
+            return XMLConverter.class.getClassLoader().getResourceAsStream(path);
         }
     }
 
