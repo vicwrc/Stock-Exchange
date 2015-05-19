@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ns2:ActionTemplatesList xmlns:ns2="ActionTemplatesList">
-    <ActionTemplate fixVersion="FIX.4.2" msgType="D">
+    <ActionTemplate fixVersion="FIX.4.2" msgType="D" name="NewOrderSingle">
         <FixActivityRow location="BODY" tag="38">
-            <dataType>java.lang.String</dataType>
+            <dataType>java.lang.Number</dataType>
             <expression>new java.math.BigDecimal("333")</expression>
         </FixActivityRow>
     </ActionTemplate>

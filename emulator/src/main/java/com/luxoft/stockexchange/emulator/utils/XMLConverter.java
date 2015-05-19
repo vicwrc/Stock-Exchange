@@ -41,13 +41,13 @@ public class XMLConverter {
         }
     }
 
-    public Object convertFromXMLToObject(String xmlfile, Class clazz) throws IOException, JAXBException {
+    public <T> T convertFromXMLToObject(String xmlfile, Class clazz) throws IOException, JAXBException {
         InputStream is = null;
         try {
             JAXBContext jc = JAXBContext.newInstance(clazz);
             Unmarshaller unmarshaller = jc.createUnmarshaller();
              is = open(xmlfile);
-            return unmarshaller.unmarshal(new StreamSource(is));
+            return (T)unmarshaller.unmarshal(new StreamSource(is));
         } finally {
             if (is != null) {
                 is.close();

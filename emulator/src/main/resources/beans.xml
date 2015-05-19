@@ -7,6 +7,18 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd ">
 
     <context:property-placeholder location="classpath:emulator.properties,file:*.properties" />
+    <context:annotation-config/>
+
+    <!-- action template declaration start -->
+
+    <bean id="fixActivityGenerator" class="com.luxoft.stockexchange.emulator.actions.FixActivityGenerator">
+        <property name="templateRepository" ref="templateRepository"/>
+    </bean>
+
+    <bean id="templateRepository" class="com.luxoft.stockexchange.emulator.actions.TemplateRepository">
+        <property name="pathToTemplate" value="${fix.emulator.action.template.config}"/>
+    </bean>
+    <!-- action template declaration end -->
 
 	<bean id="serverHandler" class="com.luxoft.stockexchange.emulator.handlers.SimpleMessageHandler">
 	</bean>

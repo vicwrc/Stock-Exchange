@@ -1,5 +1,12 @@
 package com.luxoft.stockexchange.emulator.actions;
 
+import com.luxoft.stockexchange.emulator.utils.XMLConverter;
+
+import javax.annotation.PostConstruct;
+import javax.xml.bind.JAXBException;
+import java.io.IOException;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -9,9 +16,24 @@ public class TemplateRepository {
 
     private Map<String, ActionTemplate> nameToTemplate;
 
-    public void init() {
-        // todo - load config using JAXB
+    private String pathToTemplate = "defaultTemplates.xml";
 
+    @PostConstruct
+    public void init() throws IOException, JAXBException {
+        ActionTemplatesList list = XMLConverter.getInstance().convertFromXMLToObject(pathToTemplate, ActionTemplatesList.class);
+
+        nameToTemplate = new HashMap<>();
+        for(ActionTemplate template : list.getActionTemplates()) {
+            nameToTemplate.put(template.getName(), template);
+        }
+    }
+
+    public void setPathToTemplate(String pathToTemplate) {
+        this.pathToTemplate = pathToTemplate;
+    }
+
+    public Collection<ActionTemplate> getAll() {
+        return nameToTemplate.values();
     }
 
     public ActionTemplate getTemplate(String name) {

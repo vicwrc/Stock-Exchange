@@ -66,4 +66,7 @@ public class FixMessage {
 		return str.toString();
 	}
 
+    public static FixMessage empty(){
+        return new FixMessage(null);
+    }
 }

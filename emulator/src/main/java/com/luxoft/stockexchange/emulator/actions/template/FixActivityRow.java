@@ -12,6 +12,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Created by victorvorontsov on 09.05.15.
@@ -80,7 +81,7 @@ public class FixActivityRow implements Serializable {
     protected void evaluateExpression(FixMessage currentMessage, FixMessage parentMessage) {
         Object dataToSet = CompiledMVEL.executeExpression(expression, Collections.singletonMap("parent",null == parentMessage ? null :parentMessage.getMessage()));
         if(null != dataToSet && ! isValidDataType(dataToSet)) {
-            throw new IllegalArgumentException("incorrect evaluation result of expression: ["+ expression+ "] within param : parent = "+ parentMessage.getMessage());
+            throw new IllegalArgumentException("incorrect evaluation result of expression: ["+ expression+ "] within param : parent = "+ parentMessage);
         }
         setTo(currentMessage,dataToSet);
     }

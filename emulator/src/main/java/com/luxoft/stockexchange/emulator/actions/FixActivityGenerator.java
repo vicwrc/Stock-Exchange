@@ -11,6 +11,9 @@ public class FixActivityGenerator {
 
     private TemplateRepository templateRepository;
 
+    public void setTemplateRepository(TemplateRepository templateRepository) {
+        this.templateRepository = templateRepository;
+    }
 
     public FixMessage createMessage(String templateName, FixMessage parentMessage, Map<Integer, Object> overrideDetails) {
         return templateRepository.getTemplate(templateName).create(parentMessage,overrideDetails);

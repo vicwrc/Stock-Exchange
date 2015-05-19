@@ -24,6 +24,9 @@ public class ActionTemplate implements Serializable {
     private String fixVersion;
     @XmlAttribute
     private String msgType;
+    @XmlAttribute
+    private String name;
+
 
     @XmlElement(name="FixActivityRow")
     private List<FixActivityRow> activityRowList = new LinkedList<>();
@@ -50,6 +53,14 @@ public class ActionTemplate implements Serializable {
 
     public void setMsgType(String msgType) {
         this.msgType = msgType;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public FixMessage create(FixMessage parentMessage, Map<Integer, Object> formData) {

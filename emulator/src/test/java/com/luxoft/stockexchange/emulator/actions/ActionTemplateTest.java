@@ -29,7 +29,7 @@ public class ActionTemplateTest {
     public void testGenerateData() throws Exception {
         //XMLConverter.getInstance().convertFromObjectToXML(createConfigExample(), "template.xml");
 
-        System.out.println(XMLConverter.getInstance().convertFromXMLToObject("/Users/victorvorontsov/IdeaProjects/Stock-Exchange_fork/emulator/template.xml",ActionTemplatesList.class));
+        System.out.println(XMLConverter.getInstance().convertFromXMLToObject("defaultTemplates.xml",ActionTemplatesList.class));
         System.out.println(createConfigExample());
     }
 }

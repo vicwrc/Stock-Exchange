@@ -17,8 +17,7 @@ public class ApplicationStart {
 
         emulator.start();
 
-		FixMessage mes = new FixMessage(MessageFactory.createMessage("Fix4.2", "NewOrderSingle"));
-        emulator.client.send(mes, emulator.client.getSessions().get("BANZAI1"));
+        emulator.client.send(emulator.generator.createMessage("NewOrderSingle"), emulator.client.getSessions().get("BANZAI1"));
 		
 		System.in.read();
 
