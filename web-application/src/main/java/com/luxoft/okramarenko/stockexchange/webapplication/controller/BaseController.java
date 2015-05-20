@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import com.luxoft.stockexchange.emulator.FixEmulator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,17 +24,14 @@ import com.luxoft.stockexchange.emulator.entities.FixSession;
 @Controller
 public class BaseController {
 
+    @Autowired
+    private FixEmulator emulator;
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String servers(ModelMap model) {
-		try {
-			InitClass.init();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		model.addAttribute("serverSessions", InitClass.server.getSessions());
-		model.addAttribute("clientSessions", InitClass.client.getSessions());
+
+		model.addAttribute("serverSessions", emulator.server.getSessions());
+		model.addAttribute("clientSessions", emulator.client.getSessions());
 		
 		return "servers";
 	}
@@ -40,7 +39,7 @@ public class BaseController {
 	@RequestMapping(value = "/{session}", method = RequestMethod.GET)
 	public String sessions(@PathVariable String session, ModelMap model) {
 		
-		model.addAttribute("session", InitClass.server.getSessions().get(session));
+		model.addAttribute("session", emulator.server.getSessions().get(session));
 		model.addAttribute("name", session);
 		
 		return "sessions";
@@ -50,7 +49,7 @@ public class BaseController {
 	@RequestMapping(value = "/{session}/{message}", method = RequestMethod.GET)
 	public String messages(@PathVariable String session, @PathVariable int message, ModelMap model) {
 		
-		Message mes = getMessage(InitClass.server.getSessions().get(session), message).getMessage();
+		Message mes = getMessage(emulator.server.getSessions().get(session), message).getMessage();
 		
 		Map<Integer, String> map = new HashMap<>();
 		

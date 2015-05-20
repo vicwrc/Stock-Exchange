@@ -10,8 +10,11 @@ http://www.springframework.org/schema/context/spring-context-4.0.xsd
 http://www.springframework.org/schema/mvc
 http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
+    <context:annotation-config/>
 	<context:component-scan
 		base-package="com.luxoft.okramarenko.stockexchange.webapplication.controller" />
+
+    <bean id="emulator" class="com.luxoft.stockexchange.emulator.FixEmulator" init-method="start" destroy-method="stop"/>
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
