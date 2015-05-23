@@ -28,7 +28,7 @@
 		</thead>
 		<tbody>
 			<c:forEach var="item" items="${serverSessions}">
-				<tr onclick=document.location.href='http://localhost/web-application/${item.key}'>
+				<tr onclick=document.location.href='./${item.key}'>
 					<td>${item.key}</td>
 					<td>${fn:length(item.value.seqIn)}</td>
 					<td>${fn:length(item.value.seqOut)}</td>

@@ -20,7 +20,7 @@
 		<tbody>
 			<!-- SeqIn -->
 			<c:forEach var="item" items="${session.seqIn}">
-				<tr onclick=document.location.href='http://localhost/web-application/${name}/${item.id}'>
+				<tr onclick=document.location.href='./${name}/${item.id}'>
 					<td>${item.processedTime}</td>
 					<td>${item.message}</td>
 					<td>In</td>
@@ -29,7 +29,7 @@
 			
 			<!-- SeqOut -->
 			<c:forEach var="item" items="${session.seqOut}">
-				<tr onclick=document.location.href='http://localhost/web-application/${name}/${item.id}'>
+				<tr onclick=document.location.href='./${name}/${item.id}'>
 					<td>${item.processedTime}</td>
 					<td>${item.message}</td>
 					<td>Out</td>
