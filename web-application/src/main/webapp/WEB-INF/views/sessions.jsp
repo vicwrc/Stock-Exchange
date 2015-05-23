@@ -28,7 +28,7 @@
 			</c:forEach>
 			
 			<!-- SeqOut -->
-			<c:forEach var="item" items="${session.seqOut}">
+			<c:forEach var="item" items="${session.seqOut}"> 
 				<tr onclick=document.location.href='./${name}/${item.id}'>
 					<td>${item.processedTime}</td>
 					<td>${item.message}</td>
