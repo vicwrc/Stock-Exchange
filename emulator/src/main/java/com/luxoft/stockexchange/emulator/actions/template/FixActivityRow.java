@@ -11,6 +11,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -25,6 +26,7 @@ public class FixActivityRow implements Serializable {
     private int tag;
     private Class dataType;
     private String expression;
+    private String setterInstruction; // optional
 
     public FixActivityRow() {
     }
@@ -34,6 +36,14 @@ public class FixActivityRow implements Serializable {
         this.tag = tag;
         this.dataType = dataType;
         this.expression = expression;
+    }
+
+    public String getSetterInstruction() {
+        return setterInstruction;
+    }
+
+    public void setSetterInstruction(String setterInstruction) {
+        this.setterInstruction = setterInstruction;
     }
 
     public FixDataLocation getLocation() {
@@ -103,8 +113,17 @@ public class FixActivityRow implements Serializable {
     }
 
     protected void setTo(FixMessage currentMessage, Object value) {
-        FieldMap fieldMap = getTargetFieldMap(currentMessage.getMessage());
-        fieldMap.setField(tag, new Field<Object>(tag,value));
+        if(null == setterInstruction) {
+            FieldMap fieldMap = getTargetFieldMap(currentMessage.getMessage());
+            fieldMap.setField(tag, new Field<Object>(tag, value));
+        } else {
+            Map<String, Object> params = new HashMap<>();
+            params.put("value", value);
+            params.put("tag", tag);
+            params.put("message",currentMessage.getMessage());
+            CompiledMVEL.executeExpression(setterInstruction, params);
+            System.out.println("result : "+currentMessage.getMessage());
+        }
     }
 
     protected FieldMap getTargetFieldMap(Message message) {

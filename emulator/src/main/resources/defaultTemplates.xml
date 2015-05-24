@@ -5,5 +5,10 @@
             <dataType>java.lang.Number</dataType>
             <expression>new java.math.BigDecimal("333")</expression>
         </FixActivityRow>
+        <FixActivityRow location="BODY" tag="60">
+            <dataType>java.util.Date</dataType>
+            <expression>new java.util.Date()</expression>
+            <setterInstruction>message.setUtcTimeStamp(tag, value, true) </setterInstruction>
+        </FixActivityRow>
     </ActionTemplate>
 </ns2:ActionTemplatesList>

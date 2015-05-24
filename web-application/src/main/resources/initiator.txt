@@ -1,6 +1,6 @@
 [default]
 FileStorePath=examples/target/data/banzai
-FileLogPath=D:\QuickFIXJ\initiator\logs
+FileLogPath=QuickFIXJ/initiator/logs
 ConnectionType=initiator
 SenderCompID=BANZAI
 TargetCompID=EXEC

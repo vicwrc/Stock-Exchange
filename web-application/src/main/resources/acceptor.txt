@@ -1,6 +1,6 @@
 [default]
 FileStorePath=examples/target/data/executor
-FileLogPath=D:\QuickFIXJ\acceptor\logs
+FileLogPath=QuickFIXJ/acceptor/logs
 ConnectionType=acceptor
 StartTime=00:00:00
 EndTime=00:00:00
