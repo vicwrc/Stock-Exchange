@@ -26,7 +26,7 @@
 				<th><span>SeqOut size</span></th>
 			</tr>
 		</thead>
-		<tbody>  
+		<tbody>
 			<c:forEach var="item" items="${serverSessions}">
 				<tr onclick=document.location.href='./${item.key}'>
 					<td>${item.key}</td>

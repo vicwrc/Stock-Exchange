@@ -12,7 +12,6 @@ import javax.xml.bind.annotation.XmlAttribute;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Map;
-import java.util.Optional;
 
 /**
  * Created by victorvorontsov on 09.05.15.
