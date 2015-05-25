@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import com.luxoft.stockexchange.emulator.FixEmulator;
+import com.luxoft.stockexchange.emulator.application.Application;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -36,20 +37,32 @@ public class BaseController {
 		return "servers";
 	}
 	
-	@RequestMapping(value = "/{session}", method = RequestMethod.GET)
-	public String sessions(@PathVariable String session, ModelMap model) {
+	@RequestMapping(value = "/server/{session}", method = RequestMethod.GET)
+	public String serverSessions(@PathVariable String session, ModelMap model) {
 		
 		model.addAttribute("session", emulator.server.getSessions().get(session));
 		model.addAttribute("name", session);
+        model.addAttribute("type", "server");
 		
 		return "sessions";
 	}
-	
-	//TODO
-	@RequestMapping(value = "/{session}/{message}", method = RequestMethod.GET)
-	public String messages(@PathVariable String session, @PathVariable int message, ModelMap model) {
+
+    @RequestMapping(value = "/client/{session}", method = RequestMethod.GET)
+    public String clientSessions(@PathVariable String session, ModelMap model) {
+
+        model.addAttribute("session", emulator.client.getSessions().get(session));
+        model.addAttribute("name", session);
+        model.addAttribute("type", "client");
+
+        return "sessions";
+    }
+
+
+    //TODO
+	@RequestMapping(value = "/{emulatorType}/{session}/{message}", method = RequestMethod.GET)
+	public String messages(@PathVariable String emulatorType, @PathVariable String session, @PathVariable int message, ModelMap model) {
 		
-		Message mes = getMessage(emulator.server.getSessions().get(session), message).getMessage();
+		Message mes = getMessage(getApplicationByType(emulatorType).getSessions().get(session), message).getMessage();
 		
 		Map<Integer, String> map = new HashMap<>();
 		
@@ -67,6 +80,14 @@ public class BaseController {
         
 		return "message";
 	}
+
+    private Application getApplicationByType(String type) {
+        if("server".equalsIgnoreCase(type)) {
+            return emulator.server;
+        } else {
+            return emulator.client;
+        }
+    }
 	
 	//TODO
 	private FixMessage getMessage(FixSession session, int id) {

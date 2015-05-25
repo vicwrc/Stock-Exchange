@@ -62,6 +62,7 @@ public abstract class Application implements MessageObserver {
 		
 		fixMessage.setProcessedTime(new Time(System.currentTimeMillis()));
 		fixMessage.setSessionId(session.getId());
+        fixMessage.setDirection(FixMessage.DIRECTION_IN);
 		
 		session.getSeqIn().add(fixMessage);
 	}
@@ -73,6 +74,7 @@ public abstract class Application implements MessageObserver {
 		
 		fixMessage.setProcessedTime(new Time(System.currentTimeMillis()));
 		fixMessage.setSessionId(session.getId());
+        fixMessage.setDirection(FixMessage.DIRECTION_OUT);
 		
 		session.getSeqOut().add(fixMessage);
 	}

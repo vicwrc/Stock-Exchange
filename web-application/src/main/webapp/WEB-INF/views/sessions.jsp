@@ -18,23 +18,14 @@
 			</tr>
 		</thead>
 		<tbody>
-			<!-- SeqIn -->
-			<c:forEach var="item" items="${session.seqIn}">
+			<c:forEach var="item" items="${session.getMessages()}">
 				<tr onclick=document.location.href='./${name}/${item.id}'>
 					<td>${item.processedTime}</td>
 					<td>${item.message}</td>
-					<td>In</td>
+					<td>${item.direction}</td>
 				</tr>
 			</c:forEach>
 			
-			<!-- SeqOut -->
-			<c:forEach var="item" items="${session.seqOut}">
-				<tr onclick=document.location.href='./${name}/${item.id}'>
-					<td>${item.processedTime}</td>
-					<td>${item.message}</td>
-					<td>Out</td>
-				</tr>
-			</c:forEach>
 		</tbody>
 	</table>
 </body>

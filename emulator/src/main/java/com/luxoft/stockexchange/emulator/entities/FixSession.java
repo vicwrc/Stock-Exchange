@@ -1,6 +1,8 @@
 package com.luxoft.stockexchange.emulator.entities;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import quickfix.SessionID;
@@ -57,7 +59,22 @@ public class FixSession {
 	public List<FixMessage> getSeqOut() {
 		return seqOut;
 	}
-	
+
+    public List<FixMessage> getMessages() {
+        List<FixMessage> messages = new ArrayList<>(getSeqIn().size() + getSeqOut().size());
+        messages.addAll(getSeqIn());
+        messages.addAll(getSeqOut());
+
+        Collections.sort(messages, new Comparator<FixMessage>() {
+            @Override
+            public int compare(FixMessage o1, FixMessage o2) {
+                return o1.getProcessedTime().getTime() > o2.getProcessedTime().getTime()? 1: -1;
+            }
+        });
+
+        return messages;
+    }
+
 	@Override
 	public String toString() {
 		StringBuilder str = new StringBuilder();

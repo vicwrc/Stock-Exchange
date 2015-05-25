@@ -3,13 +3,15 @@ package com.luxoft.stockexchange.emulator.entities;
 import java.sql.Time;
 
 public class FixMessage {
+
+    public static final String DIRECTION_IN = "IN";
+    public static final String DIRECTION_OUT = "OUT";
 	//TODO change to string random generator or ID from DB
 	private static int idCounter = 0;
 	private int id;
 	private Time processedTime;
 	private quickfix.Message message;
-	//TODO There is direction in session(seqIn, seqOut), should we keep it there?
-	//private Direction direction;
+	private String direction;
 	private int sessionId;
 	
 	public FixMessage(quickfix.Message message) {
@@ -54,8 +56,16 @@ public class FixMessage {
 		this.sessionId = sessionId;
 		return this;
 	}
-	
-	@Override
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
+    @Override
 	public String toString() {
 		StringBuilder str = new StringBuilder();
 		
