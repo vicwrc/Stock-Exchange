@@ -1,13 +1,13 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
+
 <html>
 
 <head>
 <title>Stocks</title>
-<spring:url value="/resources/css/main.css" var="resourceUrl"/>
-<link media="main" rel="stylesheet" href="${resourceUrl}" type="text/css" />
+<link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
 	<script type="text/javascript">
 	function popit(url){
 	    newwindow = window.open(url, '', "status=yes, height=500; width=500; resizeable=no");

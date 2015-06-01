@@ -59,7 +59,7 @@ public class BaseController {
 
 
     //TODO
-	@RequestMapping(value = "/{emulatorType}/{session}/{message}", method = RequestMethod.GET)
+	@RequestMapping(value = "/message/{emulatorType}/{session}/{message}", method = RequestMethod.GET)
 	public String messages(@PathVariable String emulatorType, @PathVariable String session, @PathVariable int message, ModelMap model) {
 		
 		Message mes = getMessage(getApplicationByType(emulatorType).getSessions().get(session), message).getMessage();

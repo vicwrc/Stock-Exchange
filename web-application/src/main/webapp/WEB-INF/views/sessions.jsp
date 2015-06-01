@@ -19,7 +19,7 @@
 		</thead>
 		<tbody>
 			<c:forEach var="item" items="${session.getMessages()}">
-				<tr onclick=document.location.href='./${name}/${item.id}'>
+				<tr onclick=document.location.href='../message/${type}/${name}/${item.id}'>
 					<td>${item.processedTime}</td>
 					<td>${item.message}</td>
 					<td>${item.direction}</td>
