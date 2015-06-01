@@ -4,10 +4,16 @@
 <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
 <html>
 <head>
-<title>Details</title>
+<title>Message Details</title>
 <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
 </head>
 <body>
+
+    <h1>Fix Emulator</h1>
+
+    <hr>
+
+    <h3>Message Details</h3>
 
 	<table class="flat-table">
 		<thead>

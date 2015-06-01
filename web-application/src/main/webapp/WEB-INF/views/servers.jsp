@@ -33,7 +33,7 @@
 		<tbody>
 			<c:forEach var="item" items="${serverSessions}">
 				<tr onclick=document.location.href='./server/${item.key}'>
-					<td>${item.key}</td>
+					<td>${item.value.session.toString()}</td>
 					<td>${fn:length(item.value.seqIn)}</td>
 					<td>${fn:length(item.value.seqOut)}</td>
 				</tr>
@@ -53,7 +53,7 @@
     		<tbody>
     			<c:forEach var="item" items="${clientSessions}">
     				<tr onclick=document.location.href='./client/${item.key}'>
-    					<td>${item.key}</td>
+    					<td>${item.value.session.toString()}</td>
     					<td>${fn:length(item.value.seqIn)}</td>
     					<td>${fn:length(item.value.seqOut)}</td>
     				</tr>

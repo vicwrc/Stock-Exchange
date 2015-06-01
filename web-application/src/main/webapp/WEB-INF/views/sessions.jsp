@@ -9,6 +9,12 @@
 </head>
 <body>
 
+    <h1>Fix Emulator</h1>
+    <hr>
+    <h3>Session ${session.session.toString()} </h3>
+
+<div style="width:100%">
+   <div style="float:left; width:70%">
 	<table class="flat-table">
 		<thead>
 			<tr>
@@ -28,5 +34,12 @@
 			
 		</tbody>
 	</table>
+
+	    </div>
+      <div style="float:left; width=30%">TODO: add controls here</div>
+      <div style="clear:both" />
+    </div>
+
+
 </body>
 </html>
