@@ -25,6 +25,8 @@
 	
 	<bean id="clientHandler" class="com.luxoft.stockexchange.emulator.handlers.SimpleMessageHandler">
 	</bean>
+
+    <bean id="sessionHandler" class="com.luxoft.stockexchange.emulator.handlers.impl.SessionHandlerImpl"/>
 	
 	<!-- TODO dirty trick remove circular reference -->
 	<bean id="fakeClient" class="com.luxoft.stockexchange.emulator.application.ClientApplication">
@@ -76,6 +78,7 @@
 		<property name="storeFactory" ref="clientStoreFatory"/>
 		<property name="logFactory" ref="logFatory"/>
 		<property name="messageFactory" ref="messageFactory"/>
+        <property name="sessionHandler" ref="sessionHandler"/>
 	</bean>
 
 	<bean id="server" class="com.luxoft.stockexchange.emulator.application.ServerApplication">
@@ -84,5 +87,6 @@
 		<property name="storeFactory" ref="serverStoreFatory"/>
 		<property name="logFactory" ref="logFatory"/>
 		<property name="messageFactory" ref="messageFactory"/>
+        <property name="sessionHandler" ref="sessionHandler"/>
 	</bean>
 </beans>

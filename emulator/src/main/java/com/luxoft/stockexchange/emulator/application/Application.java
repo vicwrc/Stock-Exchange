@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.luxoft.stockexchange.emulator.handlers.SessionHandler;
 import quickfix.ConfigError;
 import quickfix.FieldNotFound;
 import quickfix.IncorrectTagValue;
@@ -28,6 +29,7 @@ public abstract class Application implements MessageObserver {
 	protected quickfix.Application app;
 	protected MessageHandler handler;
 	protected final Map<String, FixSession> sessions = new HashMap<>();
+    protected SessionHandler sessionHandler;
 	
 	public Application(String pathToConfig) {
 		//TODO
@@ -133,4 +135,12 @@ public abstract class Application implements MessageObserver {
 		this.messageFactory = messageFactory;
 		return this;
 	}
+
+    public SessionHandler getSessionHandler() {
+        return sessionHandler;
+    }
+
+    public void setSessionHandler(SessionHandler sessionHandler) {
+        this.sessionHandler = sessionHandler;
+    }
 }

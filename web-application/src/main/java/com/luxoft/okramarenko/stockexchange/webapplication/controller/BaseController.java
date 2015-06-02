@@ -57,6 +57,28 @@ public class BaseController {
         return "sessions";
     }
 
+    @RequestMapping(value = "/control/server/{session}", method = RequestMethod.GET)
+    public String serverSessionControl(@PathVariable String session, ModelMap model) {
+
+        model.addAttribute("session", emulator.server.getSessions().get(session));
+        model.addAttribute("name", session);
+        model.addAttribute("sessionHandler", emulator.server.getSessionHandler());
+        model.addAttribute("type", "server");
+
+        return "sessioncontrol";
+    }
+
+    @RequestMapping(value = "/control/client/{session}", method = RequestMethod.GET)
+    public String clientSessionControl(@PathVariable String session, ModelMap model) {
+
+        model.addAttribute("session", emulator.client.getSessions().get(session));
+        model.addAttribute("sessionHandler", emulator.server.getSessionHandler());
+        model.addAttribute("name", session);
+        model.addAttribute("type", "client");
+
+        return "sessioncontrol";
+    }
+
 
     //TODO
 	@RequestMapping(value = "/message/{emulatorType}/{session}/{message}", method = RequestMethod.GET)
